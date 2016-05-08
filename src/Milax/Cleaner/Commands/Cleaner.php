@@ -61,7 +61,11 @@ class Cleaner extends Command
     {
         if (File::exists($path)) {
             if ((time() - File::lastModified($path)) >= $expires) {
-                File::delete($path);
+                if (File::isDirectory($path)) {
+                    File::deleteDirectory($path);
+                } else {
+                    File::delete($path);
+                }
             }
         }
     }
