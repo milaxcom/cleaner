@@ -1,0 +1,17 @@
+{
+    "name": "milax/cleaner",
+	"license": "ISC",
+	"description" : "Garbage cleaner package for Laravel",
+    "authors": [
+        {
+            "name": "Eugene Min",
+            "email": "e.min@milax.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Milax\\Cleaner\\": "src/Milax/Cleaner/"
+        }
+    },
+    "require": {}
+}
