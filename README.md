@@ -6,19 +6,19 @@ Garbage cleaner package for Laravel
 
 Install package:
 
-```
+```bash
 $ composer require milax/cleaner
 ```
 
 Publish config file to your project:
 
-```
+```bash
 $ php artisan vendor:publish --tag=cleaner
 ```
 
 Open and edit `/config/cleaner.php`:
 
-```
+```php
 return [
     [
         'path' => 'path/to/file.ext',
@@ -42,4 +42,10 @@ return [
 ];
 ```
 
-You can specify `seconds`, `minutes`, `hours`, `days`, `weeks`, `months` and `years` in `expires` key.
+The `expires` option may accept:
+- seconds
+- minutes
+- hours
+- days
+- weeks
+- months years
