@@ -48,4 +48,5 @@ The `expires` option may accept:
 - hours
 - days
 - weeks
-- months years
+- months
+- years
