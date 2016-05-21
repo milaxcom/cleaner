@@ -16,10 +16,12 @@ Publish config file to your project:
 $ php artisan vendor:publish --tag=cleaner
 ```
 
-Open and edit `/config/cleaner.php`:
+Example of `/config/cleaner.php` file:
 
 ```php
 return [
+    
+    // Delete file after 3 days and 12 hours
     [
         'path' => 'path/to/file.ext',
         'expires' => [
@@ -27,18 +29,23 @@ return [
             'hours' => 12,
         ],
     ],
+    
+    // Delete directory after 30 minutes
     [
         'path' => 'path/to/directory',
         'expires' => [
             'minutes' => 10,
         ],
     ],
+    
+    // Delete directory contents after 1 week
     [
         'path' => 'path/to/directory/*',
         'expires' => [
             'weeks' => 1,
         ],
     ]
+    
 ];
 ```
 
