@@ -1,6 +1,6 @@
 <?php
 
-namespace Milax\Cleaner\Commands;
+namespace MisterPaladin\Cleaner\Commands;
 
 use Illuminate\Console\Command;
 use File;

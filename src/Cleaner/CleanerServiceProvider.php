@@ -1,6 +1,6 @@
 <?php
 
-namespace Milax\Cleaner;
+namespace MisterPaladin\Cleaner;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Scheduling\Schedule;
@@ -25,7 +25,7 @@ class CleanerServiceProvider extends ServiceProvider
             'cleaner:run',
         ]);
         $this->app->bind('cleaner:run', function ($app) {
-            return new \Milax\Cleaner\Commands\Cleaner;
+            return new \MisterPaladin\Cleaner\Commands\Cleaner;
         });
     }
 }

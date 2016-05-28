@@ -1,5 +1,5 @@
 {
-    "name": "milax/cleaner",
+    "name": "misterpaladin/cleaner",
 	"license": "ISC",
 	"description" : "Garbage cleaner package for Laravel",
     "authors": [
@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Milax\\Cleaner\\": "src/Milax/Cleaner/"
+            "MisterPaladin\\": "src/"
         }
     },
     "require": {}
