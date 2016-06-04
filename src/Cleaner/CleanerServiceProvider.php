@@ -9,10 +9,6 @@ class CleanerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../../config/cleaner.php' => config_path('cleaner.php'),
-        ], 'cleaner');
-        
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
             $schedule->command('cleaner:run')->everyMinute();
@@ -21,6 +17,9 @@ class CleanerServiceProvider extends ServiceProvider
     
     public function register()
     {
+        $this->publishes([
+            __DIR__ . '/../config/cleaner.php' => config_path('cleaner.php'),
+        ], 'cleaner');
         $this->commands([
             'cleaner:run',
         ]);
