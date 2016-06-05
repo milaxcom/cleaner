@@ -1,5 +1,7 @@
 # Cleaner
 
+[![Latest Stable Version](https://poser.pugx.org/misterpaladin/cleaner/v/stable)](https://packagist.org/packages/misterpaladin/cleaner) [![Total Downloads](https://poser.pugx.org/misterpaladin/cleaner/downloads)](https://packagist.org/packages/misterpaladin/cleaner) [![Latest Unstable Version](https://poser.pugx.org/misterpaladin/cleaner/v/unstable)](https://packagist.org/packages/misterpaladin/cleaner) [![License](https://poser.pugx.org/misterpaladin/cleaner/license)](https://packagist.org/packages/misterpaladin/cleaner)
+
 Garbage cleaner package for Laravel
 
 ## Usage
