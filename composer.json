@@ -1,6 +1,6 @@
 {
     "name": "misterpaladin/cleaner",
-	"license": "ISC",
+	"license": "MIT",
 	"description" : "Garbage cleaner package for Laravel",
     "authors": [
         {
