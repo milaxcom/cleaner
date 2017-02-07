@@ -9,7 +9,7 @@ Garbage cleaner package for Laravel
 Install package:
 
 ```bash
-$ composer require milax/cleaner
+$ composer require misterpaladin/cleaner
 ```
 
 Publish config file to your project:
@@ -17,6 +17,8 @@ Publish config file to your project:
 ```bash
 $ php artisan vendor:publish --tag=cleaner
 ```
+
+Add `MisterPaladin\Cleaner\CleanerServiceProvider` to your `config/app.php` providers array
 
 Example of `/config/cleaner.php` file:
 
