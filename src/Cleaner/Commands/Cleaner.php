@@ -46,6 +46,8 @@ class Cleaner extends Command
                 foreach (glob($config['path']) as $path) {
                     $this->delete($path, $seconds);
                 }
+            } else {
+                $this->delete($config['path'], $seconds);
             }
         }
     }
