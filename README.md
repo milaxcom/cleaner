@@ -20,7 +20,9 @@ $ php artisan vendor:publish --tag=cleaner
 
 Add `MisterPaladin\Cleaner\CleanerServiceProvider` to your `config/app.php` providers array
 
-Example of `/config/cleaner.php` file:
+### Configuration
+
+`/config/cleaner.php` file contents:
 
 ```php
 return [
@@ -61,3 +63,27 @@ The `expires` option may accept:
 - weeks
 - months
 - years
+
+### Callbaks
+
+```php
+[
+    'path' => 'path/to/file.ext',
+    'expires' => [
+        'days' => 3,
+        'hours' => 12,
+    ],
+    'before' => function ($path) {
+        // Execute before deleting the file
+    },
+    'after' => function ($path) {
+        // Execute after deleting the file
+    },
+],
+```
+
+### Execution
+
+Cleaner runs every minute (if you set it up: https://laravel.com/docs/5.4/scheduling#introduction)
+
+Manual run: `php artisan cleaner:run`

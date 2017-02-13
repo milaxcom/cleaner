@@ -40,14 +40,14 @@ class Cleaner extends Command
      */
     public function handle()
     {
-        foreach ($this->config as $config) {
-            $seconds = $this->convertToSeconds($config['expires']);
-            if (ends_with($config['path'], '*')) {
-                foreach (glob($config['path']) as $path) {
+        foreach ($this->config as $file) {
+            $seconds = $this->convertToSeconds($file['expires']);
+            if (ends_with($file['path'], '*')) {
+                foreach (glob($file['path']) as $path) {
                     $this->delete($path, $seconds);
                 }
             } else {
-                $this->delete($config['path'], $seconds);
+                $this->delete($file, $seconds);
             }
         }
     }
@@ -55,19 +55,25 @@ class Cleaner extends Command
     /**
      * Delete file or directory at given path
      * 
-     * @param  string $path [File path]
+     * @param  array $file [Config item]
      * @param  int $expires [Expiration in seconds]
      * @return void
      */
-    protected function delete($path, $expires)
+    protected function delete($file, $expires)
     {
-        if (File::exists($path)) {
-            if ((time() - File::lastModified($path)) >= $expires) {
-                if (File::isDirectory($path)) {
-                    File::deleteDirectory($path);
+        if (File::exists($file['path'])) {
+            if (!empty($file['before']) && is_callable($file['before'])) {
+                $file['before']($file['path']);
+            }
+            if ((time() - File::lastModified($file['path'])) >= $expires) {
+                if (File::isDirectory($file['path'])) {
+                    File::deleteDirectory($file['path']);
                 } else {
-                    File::delete($path);
+                    File::delete($file['path']);
                 }
+            }
+            if (!empty($file['after']) && is_callable($file['after'])) {
+                $file['after']($file['path']);
             }
         }
     }
@@ -75,10 +81,10 @@ class Cleaner extends Command
     /**
      * Convert config to seconds
      * 
-     * @param  array $config  [Config item]
+     * @param  array $file  [Config item]
      * @return int
      */
-    protected function convertToSeconds($config)
+    protected function convertToSeconds($file)
     {
         $seconds = 0;
         
