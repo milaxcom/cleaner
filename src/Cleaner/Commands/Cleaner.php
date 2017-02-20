@@ -42,13 +42,20 @@ class Cleaner extends Command
     {
         foreach ($this->config as $file) {
             $seconds = $this->convertToSeconds($file['expires']);
-            if (ends_with($file['path'], '*')) {
-                foreach (glob($file['path']) as $path) {
-                    $this->delete($path, $seconds);
-                }
-            } else {
-                $this->delete($file, $seconds);
+            
+            if (!is_array($file['path'])) {
+                $file['path'] = [$file['path']];
             }
+            
+            foreach ($file['path'] as $key => $filepath) {
+                if (ends_with($filepath, '*')) {
+                    $glob = glob($filepath);
+                    unset($file['path'][$key]);
+                    $file['path'] = array_merge($file['path'], $glob);
+                }
+            }
+            
+            $this->delete($file, $seconds);
         }
     }
     
@@ -61,19 +68,25 @@ class Cleaner extends Command
      */
     protected function delete($file, $expires)
     {
-        if (File::exists($file['path'])) {
-            if (!empty($file['before']) && is_callable($file['before'])) {
-                $file['before']($file['path']);
-            }
-            if ((time() - File::lastModified($file['path'])) >= $expires) {
-                if (File::isDirectory($file['path'])) {
-                    File::deleteDirectory($file['path']);
-                } else {
-                    File::delete($file['path']);
+        if (!is_array($file['path'])) {
+            $file['path'] = [$file['path']];
+        }
+        
+        foreach ($file['path'] as $path) {
+            if (File::exists($path)) {
+                if (!empty($file['before']) && is_callable($file['before'])) {
+                    $file['before']($path);
                 }
-            }
-            if (!empty($file['after']) && is_callable($file['after'])) {
-                $file['after']($file['path']);
+                if ((time() - File::lastModified($path)) >= $expires) {
+                    if (File::isDirectory($path)) {
+                        File::deleteDirectory($path);
+                    } else {
+                        File::delete($path);
+                    }
+                }
+                if (!empty($file['after']) && is_callable($file['after'])) {
+                    $file['after']($path);
+                }
             }
         }
     }
