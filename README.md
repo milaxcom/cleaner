@@ -52,6 +52,18 @@ return [
         ],
     ]
     
+    // Define a path array
+    [
+        'path' => [
+            'path/to/file.ext',
+            'path/to/directory',
+            'path/to/directory/*',
+        ],
+        'expires' => [
+            'weeks' => 1,
+        ],
+    ]
+    
 ];
 ```
 
