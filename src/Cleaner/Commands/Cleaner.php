@@ -94,39 +94,39 @@ class Cleaner extends Command
     /**
      * Convert config to seconds
      * 
-     * @param  array $file  [Config item]
+     * @param  array $expires  [Config item expires value]
      * @return int
      */
-    protected function convertToSeconds($file)
+    protected function convertToSeconds($expires)
     {
         $seconds = 0;
         
-        if (isset($config['seconds'])) {
-            $seconds += $config['seconds'];
+        if (isset($expires['seconds'])) {
+            $seconds += $expires['seconds'];
         }
         
-        if (isset($config['minutes'])) {
-            $seconds += $config['minutes'] * 60;
+        if (isset($expires['minutes'])) {
+            $seconds += $expires['minutes'] * 60;
         }
         
-        if (isset($config['hours'])) {
-            $seconds += $config['hours'] * 60 * 60;
+        if (isset($expires['hours'])) {
+            $seconds += $expires['hours'] * 60 * 60;
         }
         
-        if (isset($config['days'])) {
-            $seconds += $config['days'] * 24 * 60 * 60;
+        if (isset($expires['days'])) {
+            $seconds += $expires['days'] * 24 * 60 * 60;
         }
         
-        if (isset($config['weeks'])) {
-            $seconds += $config['weeks'] * 7 * 24 * 60 * 60;
+        if (isset($expires['weeks'])) {
+            $seconds += $expires['weeks'] * 7 * 24 * 60 * 60;
         }
         
-        if (isset($config['months'])) {
-            $seconds += $config['months'] * 30 * 7 * 24 * 60 * 60;
+        if (isset($expires['months'])) {
+            $seconds += $expires['months'] * 30 * 7 * 24 * 60 * 60;
         }
         
-        if (isset($config['years'])) {
-            $seconds += $config['years'] * 365 * 30 * 7 * 24 * 60 * 60;
+        if (isset($expires['years'])) {
+            $seconds += $expires['years'] * 365 * 30 * 7 * 24 * 60 * 60;
         }
         
         return $seconds;
