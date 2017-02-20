@@ -74,18 +74,18 @@ class Cleaner extends Command
         
         foreach ($file['path'] as $path) {
             if (File::exists($path)) {
-                if (!empty($file['before']) && is_callable($file['before'])) {
-                    $file['before']($path);
-                }
                 if ((time() - File::lastModified($path)) >= $expires) {
+                    if (!empty($file['before']) && is_callable($file['before'])) {
+                        $file['before']($path);
+                    }
                     if (File::isDirectory($path)) {
                         File::deleteDirectory($path);
                     } else {
                         File::delete($path);
                     }
-                }
-                if (!empty($file['after']) && is_callable($file['after'])) {
-                    $file['after']($path);
+                    if (!empty($file['after']) && is_callable($file['after'])) {
+                        $file['after']($path);
+                    }
                 }
             }
         }
