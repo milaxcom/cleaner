@@ -9,10 +9,10 @@ class CleanerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->app->booted(function () {
-            $schedule = $this->app->make(Schedule::class);
-            $schedule->command('cleaner:run')->everyMinute();
-        });
+        // $this->app->booted(function () {
+        //     $schedule = $this->app->make(Schedule::class);
+        //     $schedule->command('cleaner:run')->everyMinute();
+        // });
     }
     
     public function register()
